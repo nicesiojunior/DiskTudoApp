@@ -1,0 +1,25 @@
+<form class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" class="form-control mr-2" placeholder="Buscar">
+    <button class="btn btn-outline-success">Buscar</button> 
+  </div>
+</form>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Produtos</th>
+      <th>Cliente</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="produtos && produtos.length">
+    <tr *ngFor="let produto of produtos">
+      <td>#</td>
+      <td>{{pedido.nomeProduto}}</td>
+      <td>{{pedido.cliente}}</td>
+      <td>{{pedido.valor}}</td>
+      <td><button class="btn btn-success">Comprar</button></td>
+    </tr>
+  </tbody>
+</table>

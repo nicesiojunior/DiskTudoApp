@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<div class="row mt-4">
+  <div class="col-md-6" style="height: 450px;">
+    <div class="row col-md-12 my-auto side-heder">
+      <h1>Cadastro de Categoria</h1>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup] = "form">
+      <div class="form-group required">
+        <label for="">Nome da Categoria:</label>
+        <input type="text" class="form-control" formControlName="nomeCategoria"
+        [ngClass]="{'is-invalid': form.get('nomeCategoria').errors &&
+                                  form.get('nomeCategoria').touched }"
+          placeholder="Insira o Nome da Categoria"/>
+        <div *ngIf="form.get('nomeCategoria').hasError('required') &&
+                    form.get('nomeCategoria').touched"
+          class="invalid-feedback">
+          Nome da Categoria é obrigatório.
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block" (click)="register()">Registar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

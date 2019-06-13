@@ -1,0 +1,61 @@
+
+<!-- <ion-list>
+  <ion-item>
+    <tr *ngFor="let produto in produtos">
+    <h2>Produto: {{produto.nomeProduto}}</h2>
+    <p>Descição: {{produto.descricao}}</p>
+    <p>Valor: {{produto.valor}}</p>
+    <button ion-button clear item-end>View</button>
+  </tr>
+  </ion-item>
+</ion-list> -->
+
+
+<!-- <div class="container">
+  <div *ngFor="let produto of produtos">
+    
+    Descrição: {{produto.descricao}}
+    <br>
+
+    Produto: {{produto.nomeProduto}}
+    <br>
+  
+    Preço: {{produto.valor}}
+    <br>
+  
+  </div>
+
+</div> -->
+
+
+
+
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text"
+    class="form-control mr-2"
+    placeholder="Buscar"
+    [(ngModel)]="filtroLista">
+  </div>
+</div>
+<!-- <h3>Filtro: {{filtroLista}}</h3> -->
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Produto</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="produtos && produtos.length">
+    <tr *ngFor="let produto of produtosFiltrados">
+      <td>#</td>
+      <td>{{produto.nomeProduto | uppercase}}</td>
+      <td>{{produto.descricao | uppercase}}</td>
+      <td>{{produto.valor | currency}}</td>
+      <td><button class="btn btn-success">Comprar</button></td>
+    </tr>
+  </tbody>
+</table>
+

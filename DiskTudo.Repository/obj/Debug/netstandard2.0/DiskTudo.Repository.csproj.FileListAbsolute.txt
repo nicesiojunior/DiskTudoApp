@@ -1,0 +1,12 @@
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\bin\Debug\netstandard2.0\DiskTudo.Repository.deps.json
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\bin\Debug\netstandard2.0\DiskTudo.Repository.dll
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\bin\Debug\netstandard2.0\DiskTudo.Repository.pdb
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\bin\Debug\netstandard2.0\DiskTudo.Domain.dll
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\bin\Debug\netstandard2.0\DiskTudo.Domain.pdb
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.csprojAssemblyReference.cache
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.AssemblyInfoInputs.cache
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.AssemblyInfo.cs
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.csproj.CopyComplete
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.dll
+C:\Users\Nicésio Junior\Desktop\DiskTudo\DiskTudo.Repository\obj\Debug\netstandard2.0\DiskTudo.Repository.pdb
