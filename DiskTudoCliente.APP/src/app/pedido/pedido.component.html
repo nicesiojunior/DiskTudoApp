@@ -1,3 +1,71 @@
-<p>
-  pedido works!
-</p>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <p class="cabecalho">Pedidos - Disk Tudo na Hora</p>
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/produto"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div class="conteudo"  >
+    <br/><h3 class="text-conteudo">Lista de Pedidos</h3>
+      <ion-row align-items-center>
+        <ion-list>
+          <ion-item *ngFor="let pedido of pedidos">
+          <!-- <ion-col size="3">
+              <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+          </ion-col>
+   -->
+          <ion-col  >
+          <p class="desc-prod">Data: {{pedido.dataHora | uppercase}}</p>
+          <p class="desc-prod">Endereço: {{pedido.endereco | uppercase}}</p>
+          <p class="desc-prod">Telefone: {{pedido.telefone | uppercase}}</p>
+          <div class="pre-btn">
+            <div class="preco">Valor da Compra:<br/> {{pedido.valorTotal|currency:"BRL"}}
+          </div>
+          </div>
+        </ion-col>
+          <ion-item *ngFor = "let ped of pedido.item">
+              <ion-col size="3">
+                  <img src="http://localhost:5000/resources/images/{{ped.produto.imagemURL}}" />
+              </ion-col>
+              <p class="desc-prod">:Quantidade: {{ped.qtdade}}</p>
+              <p class="desc-prod">:Produto: {{ped.produto.nomeProduto | uppercase}}</p>
+              <p class="desc-prod">:Preço: {{ped.produto.valor | currency:"BRL"}}</p>
+          </ion-item>
+        </ion-item>
+      </ion-list>
+      </ion-row>
+    </div>
+
+
+
+
+  <!-- <ion-content no-padding>
+    <div class="topo"></div>
+    <div class="titulo">
+      <p></p>
+      <div class="cart" tappable (click)="visualizarCarrinho()">
+        <ion-icon name="cart"></ion-icon>
+        <span>{{ carrinho.itens.length }} Itens</span>
+      </div>
+    </div>
+    <div class="produtos">
+      <div class="produto" *ngFor="let item of produtos">
+        <div (click)="visualizarProduto(item)" tappable>
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <div class="titulo">{{item.nomeProduto}}</div>
+          <div class="descricao">{{item.descricao}}</div>
+          <div class="preco">{{item.valor | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content> -->
+  
+  
+  

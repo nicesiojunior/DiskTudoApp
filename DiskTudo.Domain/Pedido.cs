@@ -7,14 +7,13 @@ namespace DiskTudo.Domain
     public class Pedido
     {
         public int Id { get; set; }
-        public int Qtadade { get; set; }
-        public DateTime Data { get; set; }
-        public int? ClienteId { get; }
+        public DateTime DataHora { get; set; }
+        public int UserId { get; set; }
 
-        public decimal ValorFinal { get; set; }
+        public decimal ValorTotal { get; set; }
 
-        public User User { get; }
-
-        public List<ProdutoPedido> ProdutoPedido { get; set; }
+        public string Item { get; set; }
+        public string Endereco { get; set; }
+        public string Telefone { get; set; }
     }
 }

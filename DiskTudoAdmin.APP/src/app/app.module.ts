@@ -18,13 +18,17 @@ import { ProdutoService } from './_services/produto.service';
 import { CategoriaService } from './_services/categoria.service';
 import { PedidoService } from './_services/pedido.service';
 import { from } from 'rxjs';
+import { CreateComponent } from './produto/create/create.component';
+import { EditComponent } from './produto/edit/edit.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       ProdutoComponent,
       PedidoComponent,
-      CategoriaComponent
+      CategoriaComponent,
+      CreateComponent,
+      EditComponent
    ],
    entryComponents: [],
    imports: [

@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProdutoComponent } from './produto/produto.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { CategoriaComponent } from './categoria/categoria.component';
-import { ClienteComponent } from './cliente/cliente.component';
 import { UserComponent } from './User/User.component';
 import { LogiinComponent } from './User/Logiin/Logiin.component';
 import { RegistrationnComponent } from './User/registrationn/registrationn.component';
@@ -22,7 +21,7 @@ import { NavComponent } from './nav/nav.component';
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
 import { ProdutoService } from './_services/produto.service';
 import { from } from 'rxjs';
-
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
    declarations: [
@@ -30,13 +29,13 @@ import { from } from 'rxjs';
       ProdutoComponent,
       PedidoComponent,
       CategoriaComponent,
-      ClienteComponent,
       UserComponent,
       LogiinComponent,
       RegistrationnComponent,
       NavComponent,
       DateTimeFormatPipePipe,
-      ProdutoComponent
+      ProdutoComponent,
+      CarrinhoComponent
    ],
    entryComponents: [],
    imports: [

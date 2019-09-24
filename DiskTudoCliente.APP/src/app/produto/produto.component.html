@@ -29,7 +29,7 @@
 
 
 
-
+<!-- 
 <div class="form-inline">
   <div class="form-group mb-2">
     <input type="text"
@@ -38,24 +38,154 @@
     [(ngModel)]="filtroLista">
   </div>
 </div>
-<!-- <h3>Filtro: {{filtroLista}}</h3> -->
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>#</th>
-      <th>Produto</th>
-      <th>Descrição</th>
-      <th>Valor</th>
-    </tr>
-  </thead>
+<!- <h3>Filtro: {{filtroLista}}</h3> -->
+<!-- <table class="table table-striped">
   <tbody *ngIf="produtos && produtos.length">
-    <tr *ngFor="let produto of produtosFiltrados">
-      <td>#</td>
-      <td>{{produto.nomeProduto | uppercase}}</td>
-      <td>{{produto.descricao | uppercase}}</td>
-      <td>{{produto.valor | currency}}</td>
-      <td><button class="btn btn-success">Comprar</button></td>
-    </tr>
+    <ion-list *ngFor="let produto of produtosFiltrados">
+      <ion-item>#</ion-item>
+      <ion-item>Produto: {{produto.nomeProduto | uppercase}}</ion-item>
+      <ion-item>Descrição: {{produto.descricao | uppercase}}</ion-item>
+      <ion-item>Valor: {{produto.valor | currency}}</ion-item>
+      <ion-item><button class="btn btn-success">Comprar</button></ion-item>
+    </ion-list>
   </tbody>
-</table>
+</table> -->
 
+
+
+
+
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Produtos - Disk Tudo na Hora
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista">
+      </div>
+  </div>
+  <ion-content  >
+    <div class="ion-padding">
+    <h4 id="produtosDiskTudoNaHora-heading1" style="color:#fff;text-align:center;">
+      Escolha seus Produtos
+    </h4>
+    <div class="cart" tappable (click)="visualizarCarrinho()">
+      <ion-icon name="cart"></ion-icon>
+      <span>{{ carrinho.itens.length }} Itens</span>
+    </div>
+    
+  <br/>
+    <ion-list id="produtosDiskTudoNaHora-list4" *ngFor="let produto of produtosFiltrados">
+     
+        <ion-item  id="produtosDiskTudoNaHora-list-item8">
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <p>
+              {{produto.nomeProduto | uppercase}}
+          </p>
+          <p class="preco"> <em>{{produto.valor | currency}}</em></p>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-input type="number" value="1"></ion-input>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-button (click)="comprarProdutos()">Comprar</ion-button>
+        </ion-item>
+    </ion-list>
+    </div>
+  
+  
+  </ion-content> -->
+
+
+
+
+
+  <ion-header>
+      
+    <ion-toolbar>
+      <ion-title>
+        <p class="cabecalho">Produtos - Disk Tudo na Hora</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="bg-buscar">
+      
+  <p class="buscar">Busque produtos.</p>
+  <div class="form-inline">
+      <div class="cart" tappable (click)="openDetailsWithState()">
+        <ion-icon name="cart"></ion-icon>
+        <span style="color: white">{{ carrinho.itens.length }} Itens</span>
+      </div>
+      <div class="form-group mb-2">
+        <input type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista">
+        
+      </div>
+      
+  </div>
+  </div>
+  
+  <div class="conteudo"  >
+    <br/><h3 class="text-conteudo">Escolha Seus Produtos</h3>
+      <ion-row align-items-center>
+        <ion-list>
+          <ion-item *ngFor="let produto of produtosFiltrados">
+          <ion-col size="3">
+              <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+          </ion-col>
+  
+          <ion-col  >
+         
+          <p class="desc-prod"> {{produto.nomeProduto | uppercase}}</p>
+          <div class="pre-btn">
+            <div class="preco">Preço:<br/> {{produto.valor|currency:"BRL"}}</div>
+              <div><ion-button color="success" class="btn-comprar" (click)="comprarProdutos(produto)">Comprar</ion-button> 
+                    <p class="quantidade"> Quantidade:</p>
+                    <ion-input name="qtd" [(ngModel)]="prodQuant" type="number" placeholder="0"  class="input-quantidade"></ion-input>
+              </div>
+
+          </div>
+        </ion-col>
+        </ion-item>
+      </ion-list>
+      </ion-row>
+    </div>
+
+
+
+
+  <!-- <ion-content no-padding>
+    <div class="topo"></div>
+    <div class="titulo">
+      <p></p>
+      <div class="cart" tappable (click)="visualizarCarrinho()">
+        <ion-icon name="cart"></ion-icon>
+        <span>{{ carrinho.itens.length }} Itens</span>
+      </div>
+    </div>
+    <div class="produtos">
+      <div class="produto" *ngFor="let item of produtos">
+        <div (click)="visualizarProduto(item)" tappable>
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <div class="titulo">{{item.nomeProduto}}</div>
+          <div class="descricao">{{item.descricao}}</div>
+          <div class="preco">{{item.valor | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content> -->
+  
+  
+  

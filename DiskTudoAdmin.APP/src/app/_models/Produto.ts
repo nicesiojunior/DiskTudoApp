@@ -4,7 +4,7 @@ export class Produto {
     nomeProduto: string;
     descricao: string;
     valor: number;
+    qtdade: number;
     imagemURL: string;
     categoriaId?: number;
-    produtoPedido: Pedido[];
 }

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-title>Carrinho de Compras</ion-title>
+</ion-header>
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/produto"></ion-back-button>
+</ion-buttons>
+<ion-content no-padding>
+  <div class="valor" >
+    <h4>Valor Total do pedido incluindo R$4.00 de taxa de entrega</h4>
+    <h2>{{ data.valorTotal + 4 | currency }}</h2>
+    <small>Seu pedido atual</small>
+  </div>
+  <div class="produtos">
+    <ion-list *ngFor="let i of data.itens">
+      <ion-item >
+        <ion-col size="3">
+            <img src="http://localhost:5000/resources/images/{{i.produto.imagemURL}}" />
+        </ion-col>    
+        <div class="quantidade">Quantidade: {{i.qtdade}}  </div>
+        <div class="preco">  Valor: {{i.valor | currency}}</div>
+      
+        <div class="titulo">Produto: {{i.produto.nomeProduto}}</div>
+        <div class="descricao">{{i.produto.descricao}}</div>
+      </ion-item>  
+    </ion-list>
+    <p class="endereco"> Confirme seu endereço:</p>
+    <ion-input name="end" [(ngModel)]="endereco" type="text" placeholder="Endereço" ></ion-input>
+    <p class="telefone"> Confirme seu telefone:</p>
+    <ion-input name="tel" [(ngModel)]="telefone" type="text" placeholder="Telefone" ></ion-input>
+    
+    <ion-button color="success" (click)="adicionarNovoItem(data)">Finalizar Pedido</ion-button>
+  </div>
+  <div class="botao-finalizar">
+  </div>
+</ion-content>

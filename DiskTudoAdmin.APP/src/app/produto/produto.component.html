@@ -1,57 +1,191 @@
-<meta charset="utf-8">
-<div class="row mt-4">
-  <div class="col-md-6" style="height: 450px;">
-    <div class="row col-md-12 my-auto side-heder">
-      <h1>Cadastro de Produto</h1>
-    </div>
+
+<!-- <ion-list>
+  <ion-item>
+    <tr *ngFor="let produto in produtos">
+    <h2>Produto: {{produto.nomeProduto}}</h2>
+    <p>Descição: {{produto.descricao}}</p>
+    <p>Valor: {{produto.valor}}</p>
+    <button ion-button clear item-end>View</button>
+  </tr>
+  </ion-item>
+</ion-list> -->
+
+
+<!-- <div class="container">
+  <div *ngFor="let produto of produtos">
+    
+    Descrição: {{produto.descricao}}
+    <br>
+
+    Produto: {{produto.nomeProduto}}
+    <br>
+  
+    Preço: {{produto.valor}}
+    <br>
+  
   </div>
-  <div class="col-md-6">
-    <form [formGroup] = "form">
-      <div class="form-group required">
-        <label for="">Nome do Produto:</label>
-        <input type="text" class="form-control" formControlName="nomeProduto"
-        [ngClass]="{'is-invalid': form.get('nomeProduto').errors &&
-                                  form.get('nomeProduto').touched }"
-          placeholder="Insira o Nome do Produto"/>
-        <div *ngIf="form.get('nomeProduto').hasError('required') &&
-                    form.get('nomeProduto').touched"
-          class="invalid-feedback">
-          Nome do Produto é obrigatório.
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="">Descricao:</label>
-        <input class="form-control" type="text" formControlName="descricao"
-          [ngClass]="{ 'is-invalid': form.get('descricao').errors && 
-                                     form.get('descricao').touched}"
-          placeholder="Insira a sua descricao"/>
-        <div *ngIf="form.get('descricao').hasError('required') &&
-                    form.get('descricao').touched"
-          class="invalid-feedback">
-          Descricao é obrigatório.
-        </div>
-      </div>
+</div> -->
 
-      <div class="form-group">
-        <label for="">Valor:</label>
-        <input class="form-control" type="text" formControlName="valor"
-          [ngClass]="{ 'is-invalid': form.get('valor').errors && 
-                                     form.get('valor').touched}"
-          placeholder="Insira o Valor do Produto"/>
-        <div *ngIf="form.get('valor').hasError('required') &&
-                    form.get('valor').touched"
-          class="invalid-feedback">
-          Valor é obrigatório.
-        </div>
 
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-8 offset-md-2">
-          <button class="btn btn-lg btn-success btn-block" (click)="register()">Registar</button>
-        </div>
-      </div>
-    </form>
+
+<!-- 
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text"
+    class="form-control mr-2"
+    placeholder="Buscar"
+    [(ngModel)]="filtroLista">
   </div>
 </div>
+<!- <h3>Filtro: {{filtroLista}}</h3> -->
+<!-- <table class="table table-striped">
+  <tbody *ngIf="produtos && produtos.length">
+    <ion-list *ngFor="let produto of produtosFiltrados">
+      <ion-item>#</ion-item>
+      <ion-item>Produto: {{produto.nomeProduto | uppercase}}</ion-item>
+      <ion-item>Descrição: {{produto.descricao | uppercase}}</ion-item>
+      <ion-item>Valor: {{produto.valor | currency}}</ion-item>
+      <ion-item><button class="btn btn-success">Comprar</button></ion-item>
+    </ion-list>
+  </tbody>
+</table> -->
 
+
+
+
+
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Produtos - Disk Tudo na Hora
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista">
+      </div>
+  </div>
+  <ion-content  >
+    <div class="ion-padding">
+    <h4 id="produtosDiskTudoNaHora-heading1" style="color:#fff;text-align:center;">
+      Escolha seus Produtos
+    </h4>
+    <div class="cart" tappable (click)="visualizarCarrinho()">
+      <ion-icon name="cart"></ion-icon>
+      <span>{{ carrinho.itens.length }} Itens</span>
+    </div>
+    
+  <br/>
+    <ion-list id="produtosDiskTudoNaHora-list4" *ngFor="let produto of produtosFiltrados">
+     
+        <ion-item  id="produtosDiskTudoNaHora-list-item8">
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <p>
+              {{produto.nomeProduto | uppercase}}
+          </p>
+          <p class="preco"> <em>{{produto.valor | currency}}</em></p>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-input type="number" value="1"></ion-input>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-button (click)="comprarProdutos()">Comprar</ion-button>
+        </ion-item>
+    </ion-list>
+    </div>
+  
+  
+  </ion-content> -->
+
+
+
+
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <p class="cabecalho">Produtos - Disk Tudo na Hora</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="bg-buscar">
+      
+  <p class="buscar">Busque produtos.</p>
+  <div class="form-inline">
+      <!-- <div class="cart" tappable (click)="openDetailsWithState()">
+        <ion-icon name="cart"></ion-icon>
+        <span style="color: white">{{ carrinho.itens.length }} Itens</span>
+      </div> -->
+      <div class="form-group mb-2">
+        <input type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista">
+        
+      </div>
+      
+  </div>
+  </div>
+  
+  <div class="conteudo"  >
+    <br/><h3 class="text-conteudo">Lista de Produtos</h3>
+      <ion-row align-items-center>
+        <ion-list>
+          <ion-item *ngFor="let produto of produtosFiltrados">
+          <ion-col size="3">
+              <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+          </ion-col>
+  
+          <ion-col  >
+         
+          <p class="desc-prod"> {{produto.nomeProduto | uppercase}}</p>
+          <div class="pre-btn">
+            <div class="preco">Preço:<br/> {{produto.valor|currency:"BRL"}}</div>
+              <div><a [routerLink] = "['/produto', produto.id, 'edit']">Editar</a> 
+                    <p>
+                      <ion-button color="success" class="btn-comprar" (click)="removerProduto(produto)">Remover</ion-button>
+                    </p>
+              </div>
+
+          </div>
+        </ion-col>
+        </ion-item>
+      </ion-list>
+      </ion-row>
+    </div>
+
+
+
+
+  <!-- <ion-content no-padding>
+    <div class="topo"></div>
+    <div class="titulo">
+      <p></p>
+      <div class="cart" tappable (click)="visualizarCarrinho()">
+        <ion-icon name="cart"></ion-icon>
+        <span>{{ carrinho.itens.length }} Itens</span>
+      </div>
+    </div>
+    <div class="produtos">
+      <div class="produto" *ngFor="let item of produtos">
+        <div (click)="visualizarProduto(item)" tappable>
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <div class="titulo">{{item.nomeProduto}}</div>
+          <div class="descricao">{{item.descricao}}</div>
+          <div class="preco">{{item.valor | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content> -->
+  
+  
+  

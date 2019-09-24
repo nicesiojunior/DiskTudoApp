@@ -3,16 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DiskTudo.API.Dto
 {
-    public class PedidoDto
-    {
+    public class PedidoDto{
         public int Id { get; set; }
+        public string DataHora { get; set; }
+        public decimal ValorTotal { get; set; }
+        public int UserId { get; set; }
+        public string Item { get; set; }
         [Required(ErrorMessage="Campo deve ser preenchido")]
-        [Range(1, 100)]
-        
-        public int Qtadade { get; set; }
-        public string Data { get; set; }
-        public decimal ValorFinal { get; set; }
-        public UserDto User { get; }
-        public List<ProdutoDto> Produto { get; set; }
+        [StringLength(200, MinimumLength = 5)]
+        public string Endereco { get; set; }
+        [Required(ErrorMessage="Campo deve ser preenchido")]
+        [Phone]
+        public string Telefone { get; set; }
     }
 }

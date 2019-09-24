@@ -138,7 +138,7 @@ namespace DiskTudo.API.Controllers
 
             var tokenDescriptor = new SecurityTokenDescriptor{
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(15),
+                Expires = DateTime.Now.AddDays(400),
                 SigningCredentials = creds
             };
 

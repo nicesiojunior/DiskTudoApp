@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Produto } from '../_models/Produto';
 import { ProdutoService } from '../_services/produto.service';
 import { Router } from '@angular/router';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-produto',
@@ -10,50 +11,83 @@ import { Router } from '@angular/router';
   styleUrls: ['./produto.component.css']
 })
 export class ProdutoComponent implements OnInit {
-  form: FormGroup;
+  // tslint:disable-next-line:variable-name
+  _filtroLista: string;
+  produtos: Array<Produto> = new Array<Produto>();
+  // itens: Array<Carrinho> = new Array<Carrinho>();
+  prodQuant: number;
+  /// veja que vc quando clica em comprar vc preenche esse objeto, e quando vc
+  // clicar no carrinho vc tem que enviar esse objeto para a pagina de carrinho
+  // carrinho: Carrinho = new Carrinho();
+  get filtroLista(): string {
+    return this._filtroLista;
+  }
+  set filtroLista(value: string) {
+    this._filtroLista = value;
+    this.produtosFiltrados = this._filtroLista ? this.filtrarProdutos(this._filtroLista) : this.produtos;
+  }
+
+  cart: [];
+  produtosFiltrados: Produto[];
+
+  // produtos: Produto[];
+  imagemLargura = 50;
+  imagemMargem = 2;
+  mostrarImagem = false;
   produto: Produto;
 
   constructor(private produtoService: ProdutoService,
-              public formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              public navCtrl: NavController,
+              public loadingController: LoadingController) { }
 
   ngOnInit() {
-    this.validation();
+   // this.getProdutos();
+    this.presentLoading();
+    this.getProdutos();
+
   }
 
-
-
-  validation() {
-    this.form = this.formBuilder.group({
-      nomeProduto: ['', Validators.required],
-      descricao: ['', Validators.required],
-      valor: ['', Validators.required]
+  removerProduto(produto: Produto) {
+    this.produto = produto;
+    this.produtoService.deleteProduto(this.produto.id).subscribe(() => {
+      console.log('Deletado com sucesso');
     });
   }
 
-  register() {
-    if (this.form.valid) {
-      this.produto = Object.assign({nomeProduto: this.form.get('nomeProduto').value}, this.form.value);
-      this.produtoService.registerProduto(this.produto).subscribe(
-        () => {
-          this.router.navigate(['/produto']);
-          console.log('Cadastro Realizado');
-        },
-        error => {
-          const erro = error.error;
-          erro.forEach(element => {
-            switch (element.code) {
-              case 'DuplicateUserName':
-                console.log('Produto Duplicado');
-                break;
-              default:
-                console.log('Erro no cadastro!! CODE: ${element.code}');
-                break;
-            }
-        });
-        }
-      );
-    }
+
+
+  filtrarProdutos(filtrarPor: string): Produto[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.produtos.filter(
+      produto => produto.nomeProduto.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
+  }
+
+  alternarImagem() {
+    this.mostrarImagem = !this.mostrarImagem;
+  }
+
+
+  getProdutos() {
+    // tslint:disable-next-line:variable-name
+    this.produtoService.getAllProduto().subscribe((_produto: Produto[]) => {
+      this.produtos = _produto;
+      this.produtosFiltrados = this.produtos;
+      // console.log(_produto);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+
+  async presentLoading() {
+    const loading = await
+      this.loadingController.create({
+      duration: 2
+    });
+
+    return await loading.present();
   }
 
 }

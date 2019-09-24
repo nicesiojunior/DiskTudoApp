@@ -1,0 +1,77 @@
+<meta charset="utf-8">
+<div class="row mt-4">
+  <div class="col-md-6" style="height: 450px;">
+    <div class="row col-md-12 my-auto side-heder">
+      <h1>Cadastro de Produto</h1>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup] = "form">
+      <div class="form-group required">
+        <label for="">Nome do Produto:</label>
+        <input type="text" class="form-control" formControlName="nomeProduto"
+        [ngClass]="{'is-invalid': form.get('nomeProduto').errors &&
+                                  form.get('nomeProduto').touched }"
+          placeholder="Insira o Nome do Produto"/>
+        <div *ngIf="form.get('nomeProduto').hasError('required') &&
+                    form.get('nomeProduto').touched"
+          class="invalid-feedback">
+          Nome do Produto é obrigatório.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Descricao:</label>
+        <input class="form-control" type="text" formControlName="descricao"
+          [ngClass]="{ 'is-invalid': form.get('descricao').errors && 
+                                     form.get('descricao').touched}"
+          placeholder="Insira a sua descricao"/>
+        <div *ngIf="form.get('descricao').hasError('required') &&
+                    form.get('descricao').touched"
+          class="invalid-feedback">
+          Descricao é obrigatório.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Valor:</label>
+        <input class="form-control" type="text" formControlName="valor"
+          [ngClass]="{ 'is-invalid': form.get('valor').errors && 
+                                     form.get('valor').touched}"
+          placeholder="Insira o Valor do Produto"/>
+        <div *ngIf="form.get('valor').hasError('required') &&
+                    form.get('valor').touched"
+          class="invalid-feedback">
+          Valor é obrigatório.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Imagem:</label>
+        <table>
+          <tr>
+            <td>
+              <button class="btn btn-success" (click)="file.click()">Enviar Imagem</button>
+              <input type="file" #file [ngClass]="{'is-invalid': form.get('imagemURL').errors 
+                && form.get('imagemURL').touched}" (change)="onFileChanged($event)"
+                class="form-control is-invalid" formControlName="imagemURL" placeholder="" 
+                style="display: none"/>
+            </td>
+          </tr>
+        </table>
+        <div *ngIf="form.get('imagemURL').hasError('required') &&
+                    form.get('imagemURL').touched"
+          class="invalid-feedback">
+          Imagem é obrigatório.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block" (click)="register()">Registar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

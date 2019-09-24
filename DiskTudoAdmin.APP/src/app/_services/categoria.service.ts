@@ -9,7 +9,7 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  registerCategoria(categoria: Categoria[]) {
+  registerCategoria(categoria: Categoria) {
     return this.http.post('http://localhost:5000/api/categoria/', categoria);
   }
 

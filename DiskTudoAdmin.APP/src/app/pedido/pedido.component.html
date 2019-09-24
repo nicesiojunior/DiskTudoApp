@@ -1,25 +1,177 @@
-<form class="form-inline">
-  <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="Buscar">
-    <button class="btn btn-outline-success">Buscar</button> 
+
+<!-- <ion-list>
+  <ion-item>
+    <tr *ngFor="let produto in produtos">
+    <h2>Produto: {{produto.nomeProduto}}</h2>
+    <p>Descição: {{produto.descricao}}</p>
+    <p>Valor: {{produto.valor}}</p>
+    <button ion-button clear item-end>View</button>
+  </tr>
+  </ion-item>
+</ion-list> -->
+
+
+<!-- <div class="container">
+  <div *ngFor="let produto of produtos">
+    
+    Descrição: {{produto.descricao}}
+    <br>
+
+    Produto: {{produto.nomeProduto}}
+    <br>
+  
+    Preço: {{produto.valor}}
+    <br>
+  
   </div>
-</form>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>#</th>
-      <th>Produtos</th>
-      <th>Cliente</th>
-      <th>Valor</th>
-    </tr>
-  </thead>
+
+</div> -->
+
+
+
+<!-- 
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text"
+    class="form-control mr-2"
+    placeholder="Buscar"
+    [(ngModel)]="filtroLista">
+  </div>
+</div>
+<!- <h3>Filtro: {{filtroLista}}</h3> -->
+<!-- <table class="table table-striped">
   <tbody *ngIf="produtos && produtos.length">
-    <tr *ngFor="let produto of produtos">
-      <td>#</td>
-      <td>{{pedido.nomeProduto}}</td>
-      <td>{{pedido.cliente}}</td>
-      <td>{{pedido.valor}}</td>
-      <td><button class="btn btn-success">Comprar</button></td>
-    </tr>
+    <ion-list *ngFor="let produto of produtosFiltrados">
+      <ion-item>#</ion-item>
+      <ion-item>Produto: {{produto.nomeProduto | uppercase}}</ion-item>
+      <ion-item>Descrição: {{produto.descricao | uppercase}}</ion-item>
+      <ion-item>Valor: {{produto.valor | currency}}</ion-item>
+      <ion-item><button class="btn btn-success">Comprar</button></ion-item>
+    </ion-list>
   </tbody>
-</table>
+</table> -->
+
+
+
+
+
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Produtos - Disk Tudo na Hora
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text"
+        class="form-control mr-2"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista">
+      </div>
+  </div>
+  <ion-content  >
+    <div class="ion-padding">
+    <h4 id="produtosDiskTudoNaHora-heading1" style="color:#fff;text-align:center;">
+      Escolha seus Produtos
+    </h4>
+    <div class="cart" tappable (click)="visualizarCarrinho()">
+      <ion-icon name="cart"></ion-icon>
+      <span>{{ carrinho.itens.length }} Itens</span>
+    </div>
+    
+  <br/>
+    <ion-list id="produtosDiskTudoNaHora-list4" *ngFor="let produto of produtosFiltrados">
+     
+        <ion-item  id="produtosDiskTudoNaHora-list-item8">
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <p>
+              {{produto.nomeProduto | uppercase}}
+          </p>
+          <p class="preco"> <em>{{produto.valor | currency}}</em></p>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-input type="number" value="1"></ion-input>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-button (click)="comprarProdutos()">Comprar</ion-button>
+        </ion-item>
+    </ion-list>
+    </div>
+  
+  
+  </ion-content> -->
+
+
+
+
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <p class="cabecalho">Pedidos - Disk Tudo na Hora</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div class="conteudo"  >
+    <br/><h3 class="text-conteudo">Lista de Pedidos</h3>
+      <ion-row align-items-center>
+        <ion-list>
+          <ion-item *ngFor="let pedido of pedidos">
+          <!-- <ion-col size="3">
+              <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+          </ion-col>
+   -->
+          <ion-col  >
+          <p class="desc-prod">Data: {{pedido.dataHora | uppercase}}</p>
+          <p class="desc-prod">Endereço: {{pedido.endereco | uppercase}}</p>
+          <p class="desc-prod">Telefone: {{pedido.telefone | uppercase}}</p>
+          <div class="pre-btn">
+            <div class="preco">Valor da Compra:<br/> {{pedido.valorTotal|currency:"BRL"}}
+          </div>
+          </div>
+        </ion-col>
+          <ion-item *ngFor = "let ped of pedido.item">
+              <ion-col size="3">
+                  <img src="http://localhost:5000/resources/images/{{ped.produto.imagemURL}}" />
+              </ion-col>
+              <p class="desc-prod">:Quantidade: {{ped.qtdade}}</p>
+              <p class="desc-prod">:Produto: {{ped.produto.nomeProduto | uppercase}}</p>
+              <p class="desc-prod">:Preço: {{ped.produto.valor | currency:"BRL"}}</p>
+          </ion-item>
+        </ion-item>
+      </ion-list>
+      </ion-row>
+    </div>
+
+
+
+
+  <!-- <ion-content no-padding>
+    <div class="topo"></div>
+    <div class="titulo">
+      <p></p>
+      <div class="cart" tappable (click)="visualizarCarrinho()">
+        <ion-icon name="cart"></ion-icon>
+        <span>{{ carrinho.itens.length }} Itens</span>
+      </div>
+    </div>
+    <div class="produtos">
+      <div class="produto" *ngFor="let item of produtos">
+        <div (click)="visualizarProduto(item)" tappable>
+          <ion-thumbnail>
+            <img src="http://localhost:5000/resources/images/{{produto.imagemURL}}" />
+           
+          </ion-thumbnail>
+          <div class="titulo">{{item.nomeProduto}}</div>
+          <div class="descricao">{{item.descricao}}</div>
+          <div class="preco">{{item.valor | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content> -->
+  
+  
+  

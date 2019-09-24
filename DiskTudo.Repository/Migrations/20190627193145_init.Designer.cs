@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiskTudo.Repository.Migrations
 {
     [DbContext(typeof(DiskTudoContext))]
-    [Migration("20190613193410_init")]
+    [Migration("20190627193145_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,26 +28,6 @@ namespace DiskTudo.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("DiskTudo.Domain.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Endereco");
-
-                    b.Property<string>("Login");
-
-                    b.Property<string>("NomeCliente");
-
-                    b.Property<string>("Senha");
-
-                    b.Property<string>("Telefone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("DiskTudo.Domain.Identity.Role", b =>
@@ -148,19 +128,19 @@ namespace DiskTudo.Repository.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ClienteId1");
+                    b.Property<DateTime>("DataHora");
 
-                    b.Property<DateTime>("Data");
+                    b.Property<string>("Endereco");
 
-                    b.Property<int>("Qtadade");
+                    b.Property<string>("Item");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("Telefone");
 
-                    b.Property<decimal>("ValorFinal");
+                    b.Property<int>("UserId");
+
+                    b.Property<decimal>("ValorTotal");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId1");
 
                     b.HasIndex("UserId");
 
@@ -187,19 +167,6 @@ namespace DiskTudo.Repository.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("DiskTudo.Domain.ProdutoPedido", b =>
-                {
-                    b.Property<int>("ProdutoId");
-
-                    b.Property<int>("PedidoId");
-
-                    b.HasKey("ProdutoId", "PedidoId");
-
-                    b.HasIndex("PedidoId");
-
-                    b.ToTable("ProdutoPedidos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -285,13 +252,10 @@ namespace DiskTudo.Repository.Migrations
 
             modelBuilder.Entity("DiskTudo.Domain.Pedido", b =>
                 {
-                    b.HasOne("DiskTudo.Domain.Cliente")
-                        .WithMany("Pedido")
-                        .HasForeignKey("ClienteId1");
-
                     b.HasOne("DiskTudo.Domain.Identity.User")
                         .WithMany("Pedido")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DiskTudo.Domain.Produto", b =>
@@ -299,19 +263,6 @@ namespace DiskTudo.Repository.Migrations
                     b.HasOne("DiskTudo.Domain.Categoria")
                         .WithMany("Produto")
                         .HasForeignKey("CategoriaId");
-                });
-
-            modelBuilder.Entity("DiskTudo.Domain.ProdutoPedido", b =>
-                {
-                    b.HasOne("DiskTudo.Domain.Pedido", "Pedido")
-                        .WithMany("ProdutoPedido")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DiskTudo.Domain.Produto", "Produto")
-                        .WithMany("ProdutoPedido")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

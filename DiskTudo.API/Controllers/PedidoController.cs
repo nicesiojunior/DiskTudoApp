@@ -44,15 +44,15 @@ namespace DiskTudo.API.Controllers
 
         }
 
-        [HttpGet("{PedidoId}")]
+        [HttpGet("{Id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> Get(int PedidoId)
+        public async Task<IActionResult> Get(int Id)
         {
 
             try
             {
-                var pedido = await _repo.GetAllPedidoAsyncById(PedidoId, true);
-                var results = _mapper.Map<PedidoDto>(pedido);
+                var pedidos = await _repo.GetAllPedidoAsyncById(Id, true);
+                var results = _mapper.Map<IEnumerable<PedidoDto>>(pedidos);
                 return Ok(results);
             }
             catch (System.Exception)

@@ -37,81 +37,75 @@ namespace DiskTudo.Repository
             _context.Update(entity);
         }
 
-        public async Task<Pedido[]> GetAllPedidoAsync(bool includeProdutos = false)
+        public async Task<Pedido[]> GetAllPedidoAsync(bool pedido)
         {
             IQueryable<Pedido> query = _context.Pedidos;
 
-            if (includeProdutos){
-                query = query.Include(pp => pp.ProdutoPedido).ThenInclude(p => p.Produto);
+            if (pedido){
+                query = query.AsNoTracking().OrderByDescending(c => c.Id);
             }
-
-            query = query.AsNoTracking().OrderByDescending(c => c.Data);
 
             return await query.ToArrayAsync();
 
         }
 
-        public async Task<Pedido> GetAllPedidoAsyncById(int PedidoId, bool includeProdutos)
+        public async Task<Pedido[]> GetAllPedidoAsyncById(int UserId, bool pedido = false)
         {
-            IQueryable<Pedido> query = _context.Pedidos.Include(p => p.User).Include(p => p.Qtadade);
+            IQueryable<Pedido> query = _context.Pedidos;
 
-            if (includeProdutos){
-                query = query.Include(pp => pp.ProdutoPedido).ThenInclude(p => p.Produto);
+            if (pedido){
             }
+            query = query.AsNoTracking().OrderByDescending(c => c.Id).Where(c => c.UserId == UserId);
 
-            query = query.AsNoTracking().OrderByDescending(c => c.Data).Where(c => c.Id == PedidoId);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Pedido> GetAllPedidoAsyncByData(DateTime data, bool includeProdutos)
-        {
-            IQueryable<Pedido> query = _context.Pedidos.Include(c => c.User).Include(c => c.Qtadade);
-
-            if (includeProdutos){
-                query = query.Include(pe => pe.ProdutoPedido).ThenInclude(p => p.Produto);
-            }
-
-            query = query.AsNoTracking().OrderByDescending(c => c.Data).Where(c => c.Data == data);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Produto[]> GetAllProdutoAsyncByName(string name, bool includePedidos = false)
-        {
-            IQueryable<Produto> query = _context.Produtos;
-
-            if (includePedidos){
-                query = query.Include(pe => pe.ProdutoPedido).ThenInclude(e => e.Pedido);
-            }
-
-            query = query.AsNoTracking().Where(c => c.NomeProduto.ToLower().Contains(name.ToLower()));
+            
 
             return await query.ToArrayAsync();
         }
 
-        public async Task<Produto> GetAllProdutoAsyncById(int ProdutoId, bool includePedidos = false)
+        public async Task<Pedido> GetAllPedidoAsyncByData(DateTime data, bool pedido = false)
+        {
+            IQueryable<Pedido> query = _context.Pedidos.Include(c => c.UserId).Include(i => i.Item);
+
+            if (pedido){
+                query = query.AsNoTracking().OrderByDescending(c => c.DataHora).Where(c => c.DataHora == data);
+            }
+
+            
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Produto[]> GetAllProdutoAsyncByName(string name, bool produto = false)
         {
             IQueryable<Produto> query = _context.Produtos;
 
-            if (includePedidos){
-                query = query.Include(pe => pe.ProdutoPedido).ThenInclude(e => e.Pedido);
+            if (produto){
+                query = query.AsNoTracking().Where(c => c.NomeProduto.ToLower().Contains(name.ToLower()));
             }
 
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<Produto> GetAllProdutoAsyncById(int ProdutoId, bool produto = false)
+        {
+            IQueryable<Produto> query = _context.Produtos;
+
+            if (produto){
+            }
+            
             query = query.AsNoTracking().OrderBy(c => c.NomeProduto).Where(c => c.Id == ProdutoId);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Produto[]> GetAllProdutoAsync(bool includePedidos = false)
+        public async Task<Produto[]> GetAllProdutoAsync(bool produto = false)
         {
             IQueryable<Produto> query = _context.Produtos;
 
-            if (includePedidos){
-                query = query.Include(pp => pp.ProdutoPedido).ThenInclude(p => p.Pedido);
+            if (produto){
+                query = query.AsNoTracking().OrderBy(c => c.NomeProduto);
             }
-
-            query = query.AsNoTracking().OrderBy(c => c.NomeProduto);
 
             return await query.ToArrayAsync();
 

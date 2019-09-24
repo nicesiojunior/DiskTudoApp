@@ -12,10 +12,9 @@ namespace DiskTudo.Repository
 
         }
         public DbSet<Produto>Produtos{get;set;}
-        public DbSet<Cliente>Clientes{get;set;}
+        public DbSet<User>Users{get;set;}
         public DbSet<Pedido>Pedidos{get;set;}
         public DbSet<Categoria>Categorias{get;set;}
-        public DbSet<ProdutoPedido>ProdutoPedidos{get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             
@@ -37,9 +36,6 @@ namespace DiskTudo.Repository
                 
                 }
             );
-
-            modelBuilder.Entity<ProdutoPedido>()
-            .HasKey(PE => new {PE.ProdutoId, PE.PedidoId});
         }
     }
 }

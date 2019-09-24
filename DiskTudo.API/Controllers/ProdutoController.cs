@@ -7,6 +7,8 @@ using DiskTudo.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace DiskTudo.API.Controllers
 {
@@ -43,14 +45,45 @@ namespace DiskTudo.API.Controllers
 
         }
 
-        [HttpGet("{ProdutoId}")]
+        [HttpPost("upload")]
         [AllowAnonymous]
-        public async Task<IActionResult> Get(int ProdutoId)
+        public async Task<IActionResult> upload()
         {
 
             try
             {
-                var produto = await _repo.GetAllProdutoAsyncById(ProdutoId, true);
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (file.Length > 0){
+                    var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName;
+                    var fullPath = Path.Combine(pathToSave, filename.Replace("\"", " ").Trim());
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create)){
+                        file.CopyTo(stream);
+                    } 
+                }
+                return Ok();
+
+            }
+            catch (System.Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+            return BadRequest("Erro ao carregar imagem");
+
+        }
+
+        [HttpGet("{Id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Get(int Id)
+        {
+
+            try
+            {
+                var produto = await _repo.GetAllProdutoAsyncById(Id, true);
                 var results = _mapper.Map<ProdutoDto>(produto);
                 return Ok(results);
             }
@@ -105,14 +138,15 @@ namespace DiskTudo.API.Controllers
 
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(int ProdutoId, Produto model)
+        [HttpPut("{Id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Put(int Id, ProdutoDto model)
         {
 
             try
             {
 
-                var produto = await _repo.GetAllProdutoAsyncById(ProdutoId, false);
+                var produto = await _repo.GetAllProdutoAsyncById(Id, false);
 
                 if (produto == null) return NotFound();
 
@@ -135,14 +169,15 @@ namespace DiskTudo.API.Controllers
 
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int ProdutoId)
+        [HttpDelete("{Id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Delete(int Id)
         {
 
             try
             {
 
-                var produto = await _repo.GetAllProdutoAsyncById(ProdutoId, false);
+                var produto = await _repo.GetAllProdutoAsyncById(Id, false);
 
                 if (produto == null) return NotFound();
 

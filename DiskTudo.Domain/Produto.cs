@@ -11,7 +11,6 @@ namespace DiskTudo.Domain
         public string ImagemURL { get; set; }
         public int? CategoriaId { get; set; }
         public Categoria Categoria { get; }
-
-        public List<ProdutoPedido> ProdutoPedido { get; set; }
+        
     }
 }
